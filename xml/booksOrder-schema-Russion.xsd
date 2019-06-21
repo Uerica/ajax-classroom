@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" ?>
+<!-- booksOrder 中有子元素依序為:orderId ,memId, title, totalAmount, item-->
+<!-- 其中, orderId,memId,title均為字串型別-->
+<!--       totalAmount為非負的整數型別-->
+<!-- item,最少要有一個,可以有很多個-->
+
+<!-- item中有子元素依序為:bookId ,bookName, price, quantity-->
+<!-- 其中, bookId ,bookName,均為字串型別-->
+<!--       price為非負的整數, quantity為正整數型別-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">  
+  <xsd:element name="booksOrder">
+	  <xsd:complexType>
+		  <xsd:sequence>
+			  <xsd:element name="orderId" type="xsd:string" />
+				<xsd:element name="memId" type="xsd:string" />
+				<xsd:element name="title" type="xsd:string" />
+				<xsd:element name="totalAmount" type="xsd:nonNegativeInteger" />
+				<xsd:element name="item" minOccurs="1" maxOccurs="unbounded">
+				  <xsd:complexType>
+					  <xsd:sequence>
+						  <xsd:element name="bookId" type="xsd:string" />
+							<xsd:element name="bookName" type="xsd:string" />
+							<xsd:element name="price" type="xsd:nonNegativeInteger" />
+							<xsd:element name="quantity" type="xsd:positiveInteger" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

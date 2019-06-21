@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" ?>
+<booksOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+      xsi:noNamespaceSchemaLocation="booksOrder-schema-Russion.xsd">
+
+ <!--
+  xsi:noNamespaceSchemaLocation="booksOrder-schema-simpleToComplex.xsd">            
+ --> 
+ <!--
+xsi:noNamespaceSchemaLocation="booksOrder-schema-flatCatalog.xsd">
+
+ --> 
+    <orderId>100001</orderId>
+	<memId>Eric</memId>
+	<title>張三先生</title>
+	<totalAmount>12800</totalAmount>
+	<item>
+		<bookId>A090</bookId>
+		<bookName>XML精要總覽</bookName>
+		<price>680</price>
+		<quantity>10</quantity>
+	</item>
+	<item>
+		<bookId>A099</bookId>
+		<bookName>XML祕笈</bookName>
+		<price>520</price>
+		<quantity>10</quantity>
+	</item>
+</booksOrder>

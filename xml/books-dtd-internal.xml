@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" ?>
+<!DOCTYPE book[
+  <!ELEMENT book (bookId, bookName, author, price, category+, publishDate,publisher,eBook?)>
+    <!ELEMENT bookId (#PCDATA)>
+	<!ELEMENT bookName (#PCDATA)>
+	<!ELEMENT author (#PCDATA)>
+	<!ELEMENT price (#PCDATA)>
+	<!ELEMENT category (#PCDATA)>
+
+	<!ELEMENT publishDate (yy,mm,dd)>
+	<!ELEMENT yy (#PCDATA)>
+	<!ELEMENT mm (#PCDATA)>
+	<!ELEMENT dd (#PCDATA)>
+	<!ELEMENT publisher (#PCDATA)>
+	<!ELEMENT eBook (#PCDATA)>
+]>
+<book>
+  <bookId>A100100008</bookId>
+	<bookName>XML精要總覽</bookName>
+	<author>Elliotte Rusty Harol</author>
+	<price>680</price>
+	<category>程式設計</category>
+    <category>資料庫</category>
+	<publishDate>
+	  <yy>2001</yy>
+	  <mm>11</mm>
+	  <dd>01</dd>
+	</publishDate>
+	<publisher>O'REILLY</publisher>
+</book>

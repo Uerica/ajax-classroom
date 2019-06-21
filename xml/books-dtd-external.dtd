@@ -1,0 +1,9 @@
+﻿  <?xml version="1.0" ?>
+	<!ELEMENT book (bookId, bookName, author, price, category+, publishDate,publisher,eBook?)>
+    <!ELEMENT bookId (#PCDATA)>
+	<!ELEMENT bookName (#PCDATA)>
+	<!ELEMENT author (#PCDATA)>
+	<!ELEMENT price (#PCDATA)>
+	<!ELEMENT category (#PCDATA)>
+	<!ELEMENT publishDate (#PCDATA)>
+	<!ELEMENT publisher (#PCDATA)>
