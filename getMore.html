@@ -16,18 +16,18 @@
 function getMember(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange=function (){
-      if( xhr.readyState == 4){
-        if( xhr.status == 200 ){
-          document.getElementById("showPanel").innerHTML = xhr.responseText;  
+      if( xhr.readyState == 4){    //處理完畢
+        if( xhr.status == 200 ){   //回傳成功
+          document.getElementById("showPanel").innerHTML = xhr.responseText;  //伺服器回應
         }else{
-          alert( xhr.status );
+          alert( xhr.status );  //回傳狀態碼
         }
       }
   }
   
   var url = "getMore.php?memId=" + document.getElementById("memId").value;
   xhr.open("Get", url, true);
-  xhr.send( null );
+  xhr.send( null ); //GET
 }
 </script>
 </body>

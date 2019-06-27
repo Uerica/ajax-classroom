@@ -8,20 +8,120 @@
 </style>
 
 </head>
-<body>	   
+<body>
+<h2>測試THIS</h2>
+<script>
+	var value = 1;
+
+	var foo = {
+		value :2,
+		bar:function(){
+			return this.value;
+		}
+	}
+
+	console.log("foo.bar():",foo.bar());
+	console.log("(foo.bar)():",(foo.bar)());
+	console.log("(foo.bar = foo.bar)()");
+
+</script>	
+	
 <h2> new Object()</h2>
 <script>  
+var emp = new Object();
+emp.empno = "7001";
+emp.ename = "Adam";
+emp.submit = function (coco){
+	document.write( `申請費用${coco}元<br>`);
+}
+emp.submit( 600);
 
+var emp2 = new Object();
+emp2.empno = "700";
+emp2.ename = "Alice";
+//emp2.submit(100); //此行會error
+</script>
+
+<h2>function當作一般function 來呼叫</h2>
+<script type="text/javascript">
+function Employee( empno, ename){
+  this.empno = empno;
+  this.ename = ename;
+}	
+document.write("window.empno : ", window.empno, "<br>");
+document.write("window.ename : ", window.ename, "<br>");
+
+Employee("7002", "Alice");//當作一般function 來呼叫時，function中的this會參考到window物件
+document.write("window.empno : ", window.empno, "<br>");
+document.write("window.ename : ", window.ename, "<br>");
+</script>
+
+<h2>function.call()</h2>
+<script type="text/javascript">
+function Employee( empno, ename){
+  this.empno = empno;
+  this.ename = ename;
+}	
+
+var emp3 = new Object();
+Employee.call(emp3, "7003", "Ann"); //call的第一個參數，可以放入一個物件變數emp3，讓Employee()中的this參考到emp3
+
+document.write("emp3.empno : ", emp3.empno, "<br>");
+document.write("emp3.ename : ", emp3.ename, "<br>");
 </script>
 
 <h2> new 類別名稱()</h2>
 <script> 	
+function Employee( empno, ename){
+  this.empno = empno;
+  this.ename = ename;
+}
 
+Employee.prototype.submit = function(coco){
+	document.write( `${this.ename} 申請費用 ${coco}元<br>`);
+}
+
+Employee.prototype.toString = function(){
+	return `員工代號 : ${this.empno}, 員工姓名 : ${this.ename}`;
+}
+
+var emp4 = new Employee( "7004", "John"); //emp4 = new Object(); Employee.call(emp4, "7004", "John");	
+emp4.submit( 1000);
+document.write( emp4.toString() , "<br>");
+
+var emp5 = new Employee( "7005", "Mary"); //emp5 = new Object(); Employee.call(emp5, "7005", "Mary");	
+emp5.submit( 6000);
+document.write( emp5 , "<br>");
 </script>  
 
-<h2>JSON</h2>
-<script> 	
+<h2>JS literal</h2>
+<script type="text/javascript">
+var emp6 = {
+	empno : "7006",
+	ename : "Helen"
+}
+</script>
 
+
+<h2>JSON.stringify()</h2>
+<script> 	
+var emp7 = {
+	empno : "7007",
+	ename : "Henry",
+	phone : ["03-168168", "0933-168168", "02-1681688"]
+}
+var str = JSON.stringify( emp7);
+document.write( str, "<br>");
+</script>
+
+<h2>JSON.parse()</h2>
+<script type="text/javascript">
+var str = '{"empno":"7007","ename":"Henry","phone":["03-168168","0933-168168","02-1681688"]}';	
+var obj = JSON.parse( str );
+document.write( obj.empno, "<br>");
+document.write( obj.ename, "<br>");
+document.write( obj.phone[0], "<br>"); //03-168168
+document.write( obj.phone, "<br>"); //03-168168,0933-168168,02-1681688
 </script>
 </body>
 </html>

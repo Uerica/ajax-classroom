@@ -3,6 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>無標題文件</title>
+<style type="text/css">
+  .memTable th {
+    background-color:pink;
+  }
+
+  .memTable td {
+    border-bottom:1px dotted deeppink;
+  }
+</style>
 </head>
 
 <body>
@@ -12,9 +21,22 @@
 <input type="button" value="取得會員資料" onclick="getMember()"/>
 <div id="showPanel"></div>
 </center>
+
 <script>
 function showMember(jsonStr){
-
+   let memRow = JSON.parse( jsonStr );
+   let html;
+   if( memRow.memId ){
+      html = `<table class="memTable">
+            <tr><th>帳號</th><td>${memRow.memId}</td></tr>
+            <tr><th>姓名</th><td>${memRow.memName}</td></tr>
+            <tr><th>生日</th><td>${memRow.birthday}</td></tr>
+            <tr><th>email</th><td>${memRow.email}</td></tr>
+          </table>`;
+   }else{
+      html = "<center>查無此會員</center>";
+   }
+   document.getElementById("showPanel").innerHTML = html;      
 }
 
 function getMember(){
@@ -22,7 +44,7 @@ function getMember(){
   xhr.onload=function (){
        if( xhr.status == 200 ){
         //modify here
-
+          showMember(xhr.responseText)
        }else{
           alert( xhr.status );
        }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<link rel="stylesheet" type="text/css" href="memInsert.css" >
+<title>檢查會員帳號</title>
+
+</head>
+<body> 
+<h2 align="center">申請加入會員</h2>
+<form id="myForm">
+<table width="540" border="0" cellpadding="0" cellspacing="0" id="memTable">
+    <caption>會員申請單</caption>
+    <tr>
+        <th>帳號<span class="must">*</span>:</th><td>
+        <input name="memId" id="memId" type="text" size="8" maxlength="8" >
+        <input type="button" id="btnCheckId" value="檢查帳號是否可用"><span id="idMsg"></span>   
+        </td></tr>    
+    <tr><th width="35%">姓名<span class="must">*</span>:</th><td><input name="memName" id="memName" type="text" size="10" maxlength="10" ></td></tr>
+
+    <tr>
+        <th>密碼<span class="must">*</span>:</th><td><input name="memPsw" id="memPsw"type="password" size="8" maxlength="8" ></td></tr>
+     <tr>
+         <th>確認密碼<span class="must">*</span>:</th><td><input name="memPsw2" type="password" size="8" maxlength="8" ></td></tr    
+    ><tr><th>Email:</th><td><input name="email" id="email" type="text" size="50" maxlength="50" ></td></tr>
+    <tr><th>性別:</th><td><input name="sex" type="radio" value="1">男
+                          <input name="sex" type="radio" value="0">女</td></tr>
+    <tr><th>生日:</th>
+    <td><input name="birthday" id="birthday" type="date" ></td></tr>
+    <tr><th>電話:</th><td><input name="tel" id="tel" type="text" size="10" maxlength="10"></td></tr>
+</table>
+<p style="text-align:center"><input type="button" id="btnSend" value="確定加入">&nbsp;<input type="reset" value="取消" > </p>
+</form>
+<div id="showPanel">
+</div>
+<script> 
+function sendForm(){
+  //檢查所有的欄位是否有效
+  //若資料有錯，則return
+
+  //資料若都正確, 送到後端去新增資料
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = function (){
+    if(xhr.status == 200){
+      if( xhr.responseText == "success"){
+        alert("新增成功");
+        //....看看還有没有事要做,比如清空輸入盒,或關燈箱
+      }else{
+        alert( xhr.responseText);
+      }
+    }else{
+      alert(xhr.status);
+    }
+  }
+  var member = {}; //member = new Object();
+  member.memId = document.getElementById("memId").value;
+  member.memPsw = document.getElementById("memPsw").value;
+  member.memName = document.getElementById("memName").value;
+  member.birthday = document.getElementById("birthday").value;
+  member.email = document.getElementById("email").value;
+  member.tel = document.getElementById("tel").value;
+  //取得性別的值
+  if( document.getElementsByName("sex")[0].checked){
+    member.sex = 1;
+  }else{
+    member.sex = 0;
+  }
+  var jsonStr = JSON.stringify( member );
+  var url = "memInsert.php?jsonStr=" + jsonStr ;
+  console.log(url);
+  xhr.open("get", url, true);
+  xhr.send(null)
+}
+
+
+
+//..........................................
+window.addEventListener("load", function(){
+  document.getElementById("btnSend").addEventListener("click", sendForm, false);
+}, false);
+
+</script>
+</body>
+</html>
