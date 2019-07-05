@@ -1,0 +1,7 @@
+display_errors = 
+session.save_path = 
+upload_tmp_dir = 
+extension.dir = 
+extension=mbstring
+extension=mysqli
+extension=pdo_mysql
